@@ -1,6 +1,5 @@
 <html>
 <head>
-    <!--    <meta charset="windows-1251">-->
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,15 +13,15 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const base64 = urlParams.get('base64');
-        console.log(base64)
+        log(base64)
 
         let checkList = null
         let originPlainText = null
         if (base64) {
             originPlainText = toPlainTextFromBase64(base64)
-            console.log(originPlainText)
+            log(originPlainText)
             checkList = parseCheckListFromSimpleText(originPlainText)
-            console.log(checkList)
+            log(checkList)
         }
     </script>
 </head>
@@ -55,7 +54,7 @@
 
         generate() {
             this.link = generateLink(this.textAreaModel);
-            console.log(this.link);
+            log(this.link);
         }
     }" x-if="dataCheckList !== null"> <!--section of checklist-->
         <section class="section">
@@ -147,7 +146,21 @@
     <section class="section" id="ABOUT">
         <h3 class="title is-3">About</h3>
         <div class="content">
-            <p>This site makes it easy to view pre-made checklists.</p>
+            <p>This application supports the checklist format described by <a
+                    href="https://github.com/ezhov-da/checklist">here</a>.</p>
+            <p>For any issues with the app, file <a href="https://github.com/ezhov-da/checklist-js/issues">issue</a> to
+                help improve the app.</p>
+            <p></p>
+            <p>Home <a href="https://github.com/ezhov-da/checklist-js">page</a> of the project.</p>
+            <p></p>
+            <blockquote>
+                <p><strong>Important!</strong> The application does not interact with the server, which means that no
+                    information is transmitted over the network.</p>
+                <p>The application works with data by converting it to <a href="https://en.wikipedia.org/wiki/Base64">Base64</a>&nbsp;and
+                    passing it as a query parameter.</p>
+                <p>This means that any checklist link you send contains this data almost in the clear. Therefore, do not
+                    add passwords or any other information to the checklists that you do not want to be compromised.</p>
+            </blockquote>
         </div>
     </section>
 
@@ -157,7 +170,7 @@
 
             generate() {
                 this.link = generateLink(this.inputText);
-                console.log(this.link);
+                log(this.link);
             },
 
             pasteExample() {
