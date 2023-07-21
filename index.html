@@ -4,6 +4,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="checklist.css">
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!--https://www.npmjs.com/package/js-base64-->
@@ -122,14 +123,22 @@
                             <div x-data="{
                                 showItemBlock: false
                             }">
-                                <input type="checkbox" x-model="itemI.isComplete"/>
 
                                 <template x-if="itemI.blocks.length > 0">
-                                    <label class="has-text-link-dark" x-text="itemI.text"
-                                           @click="showItemBlock = !showItemBlock"></label>
+                                    <p>
+                                        <input type="checkbox" x-model="itemI.isComplete"/>
+                                        <label :class="itemI.isComplete ? 'strike-txt' : ''" x-text="itemI.text"
+                                               @click="itemI.isComplete = !itemI.isComplete"></label>
+                                        <label class="has-text-link-dark"
+                                               @click="showItemBlock = !showItemBlock">block</label>
+                                    </p>
                                 </template>
                                 <template x-if="itemI.blocks.length === 0">
-                                    <label x-text="itemI.text"></label>
+                                    <p>
+                                        <input type="checkbox" x-model="itemI.isComplete"/>
+                                        <label x-text="itemI.text" :class="itemI.isComplete ? 'strike-txt' : ''"
+                                               @click="itemI.isComplete = !itemI.isComplete"></label>
+                                    </p>
                                 </template>
                                 <template x-for="itemIBlock in itemI.blocks" :key="itemIBlock">
                                     <pre x-text="itemIBlock" x-show="showItemBlock"></pre>
